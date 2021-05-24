@@ -1,11 +1,11 @@
 import numpy as np
 from scipy import sparse
 from tqdm import tqdm
-import time
 import sparse
 from sparse import COO
 
-def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, seed=42, directed=False):
+
+def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, directed=False):
     """Returns a $G_{n,mu, lambda}$ dynamic random graph, also known as an dynamic Erdős-Rényi graph.
         The $G_{n,\mu, \lambda}$ model chooses to create inexist edges with probabilty $\mu$ (also known as up-rate)
           and remove exist edges with probability $\lambda$  (also known as doen-rate).
@@ -39,11 +39,7 @@ def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, seed=42, directed
                     In Computing and Software Science (pp. 123-140). Springer, Cham.‏.
         """
 
-    if directed:
-        adj_t = np.zeros((n, n))
-        return adj_t  # TODO: fix for directed
-    else:
-        adj_t = np.zeros((n, n))
+    adj_t = np.zeros((n, n))
 
     # $A_{t+1} = (A_t \cdot R_d) + (1-A_t) \cdot R_u)
     # S.t. A_t is the adj matrix, R_d is a binary random matrix with prob of down-rate of non-zero values.
@@ -57,18 +53,10 @@ def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, seed=42, directed
         new_edges_created = (1 - adj_t) * up_rate_mask
 
         adj_t = old_edges_survived + new_edges_created
-
-        compressed_adj_t = COO.from_numpy(adj_t)
+        np.fill_diagonal(adj_t, 0)  # remove self-edges
+        if directed:
+            compressed_adj_t = COO.from_numpy(adj_t)
+        else:  # make the adj matrix symmetric again
+            compressed_adj_t = COO.from_numpy(np.tril(adj_t) + np.tril(adj_t, -1).T)
         compressed_adj_list.append(compressed_adj_t)
     return sparse.stack(compressed_adj_list)
-
-
-if __name__ == "__main__":
-    start_time = time.time()
-    n = 1000
-    t = 10000
-    up_rate = 1 / n
-    down_rate = 0.4
-    G = fast_dynamic_er_random_graph(n, t, up_rate, down_rate)
-
-    print("--- %s seconds ---" % (time.time() - start_time))
