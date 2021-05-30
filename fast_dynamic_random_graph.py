@@ -11,7 +11,7 @@ def adj_matrix_to_df(adj_t, step=None):
     coo = np.rec.fromarrays([row, col], names='row col'.split())
     df = pd.DataFrame.from_records(coo, columns=['row', 'col'])
     if step is not None:
-        df['step'] = 0
+        df['step'] = step
         df = df[['step', 'row', 'col']]
     return df
 
