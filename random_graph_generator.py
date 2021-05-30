@@ -6,8 +6,8 @@ from pathlib import Path
 if __name__ == "__main__":
 
     start_time = time.time()
-    for _ in range(5):
-        for n in [1000, 2000]:
+    for _ in range(3):
+        for n in [1000]:
             for t in [20000]:
                 for up in [2 / n, 1 / n, 0.5 / n]:
                     for down in [0.3, 0.5, 0.7]:
