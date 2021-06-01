@@ -72,11 +72,16 @@ def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, output_file_name,
             #compressed_adj_t = COO.from_numpy(np.tril(adj_t) + np.tril(adj_t, -1).T)
             df_compressed_adj_t = adj_matrix_to_df(np.tril(adj_t), step)
 
-        df_adj = pd.concat([df_adj, df_compressed_adj_t])
-        if df_adj.size > 10000:
+        if df_adj.size == 0:
+            df_adj = df_compressed_adj_t.copy()
+        else:
+            df_adj = pd.concat([df_adj, df_compressed_adj_t])
+
+        if df_adj.size > 100000:
             df_adj.to_csv(output_file_name, mode='a', header=False, index=False)
             df_adj = pd.DataFrame(columns=[['step', 'row', 'col']])
 
         #compressed_adj_list.append(compressed_adj_t)
 
+    df_adj.to_csv(output_file_name, mode='a', header=False, index=False)
     return #sparse.stack(compressed_adj_list)
