@@ -59,7 +59,7 @@ def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, output_file_name=
     # S.t. A_t is the adj matrix, R_d is a binary random matrix with prob of down-rate of non-zero values.
     # R_u is a binary random matrix with prob of up-rate of non-zero values
     compressed_adj_list = [COO.from_numpy(adj_t)]
-    df_adj = pd.DataFrame(columns=[['step', 'row', 'col']])
+    df_adj = pd.DataFrame(columns=[['datetime', 'source', 'destination']])
     for step in tqdm(range(steps)):
         down_rate_mask = np.random.choice([0, 1], size=(n, n), p=[1 - down_rate, down_rate])
         up_rate_mask = np.random.choice([0, 1], size=(n, n), p=[1 - up_rate, up_rate])
@@ -82,10 +82,10 @@ def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, output_file_name=
             df_adj = pd.concat([df_adj, df_compressed_adj_t])
 
         if df_adj.size > 100000:
-            df_adj.to_csv(output_file_name, mode='a', header=False, index=False)
-            df_adj = pd.DataFrame(columns=[['step', 'row', 'col']])
+            df_adj.to_csv(output_file_name, mode='a', header=True, index=False)
+            df_adj = pd.DataFrame(columns=[['datetime', 'source', 'destination']])
 
         # compressed_adj_list.append(compressed_adj_t)
 
-    df_adj.to_csv(output_file_name, mode='a', header=False, index=False)
+    df_adj.to_csv(output_file_name, mode='a', header=True, index=False)
     return  # sparse.stack(compressed_adj_list)
