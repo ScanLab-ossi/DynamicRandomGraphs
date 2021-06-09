@@ -4,6 +4,8 @@ from tqdm import tqdm
 import sparse
 from sparse import COO
 import pandas as pd
+from pathlib import Path
+import time
 
 
 def adj_matrix_to_df(adj_t, step=None):
@@ -16,7 +18,7 @@ def adj_matrix_to_df(adj_t, step=None):
     return df
 
 
-def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, output_file_name, directed=False, ):
+def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, output_file_name=None, directed=False, ):
     """Returns a $G_{n,mu, lambda}$ dynamic random graph, also known as an dynamic Erdős-Rényi graph.
         The $G_{n,\mu, \lambda}$ model chooses to create inexist edges with probabilty $\mu$ (also known as up-rate)
           and remove exist edges with probability $\lambda$  (also known as doen-rate).
@@ -48,7 +50,9 @@ def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, output_file_name,
         .. [1] Mandjes, M., Starreveld, N., Bekker, R., & Spreij, P. (2019). Dynamic Erdős-Rényi Graphs.
                     In Computing and Software Science (pp. 123-140). Springer, Cham.‏.
         """
-
+    if output_file_name is None:
+        output_file_name = Path(
+            'data') / f'random_undirected_er_{n}_nodes_{steps}_steps_{up_rate}_up_{down_rate}_down_{time.time()}.csv'
     adj_t = np.zeros((n, n))
 
     # $A_{t+1} = (A_t \cdot R_d) + (1-A_t) \cdot R_u)
@@ -66,10 +70,10 @@ def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, output_file_name,
         adj_t = old_edges_survived + new_edges_created
         np.fill_diagonal(adj_t, 0)  # remove self-edges
         if directed:
-            #compressed_adj_t = COO.from_numpy(adj_t)
+            # compressed_adj_t = COO.from_numpy(adj_t)
             df_compressed_adj_t = adj_matrix_to_df(adj_t, step)
         else:  # make the adj matrix symmetric again
-            #compressed_adj_t = COO.from_numpy(np.tril(adj_t) + np.tril(adj_t, -1).T)
+            # compressed_adj_t = COO.from_numpy(np.tril(adj_t) + np.tril(adj_t, -1).T)
             df_compressed_adj_t = adj_matrix_to_df(np.tril(adj_t), step)
 
         if df_adj.size == 0:
@@ -81,7 +85,7 @@ def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, output_file_name,
             df_adj.to_csv(output_file_name, mode='a', header=False, index=False)
             df_adj = pd.DataFrame(columns=[['step', 'row', 'col']])
 
-        #compressed_adj_list.append(compressed_adj_t)
+        # compressed_adj_list.append(compressed_adj_t)
 
     df_adj.to_csv(output_file_name, mode='a', header=False, index=False)
-    return #sparse.stack(compressed_adj_list)
+    return  # sparse.stack(compressed_adj_list)
