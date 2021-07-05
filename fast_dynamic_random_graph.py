@@ -10,11 +10,11 @@ import time
 
 def adj_matrix_to_df(adj_t, step=None):
     row, col = np.where(adj_t)
-    coo = np.rec.fromarrays([row, col], names='row col'.split())
-    df = pd.DataFrame.from_records(coo, columns=['row', 'col'])
+    coo = np.rec.fromarrays([row, col], names='source destination'.split())
+    df = pd.DataFrame.from_records(coo, columns=['source', 'destination'])
     if step is not None:
-        df['step'] = step
-        df = df[['step', 'row', 'col']]
+        df['datetime'] = step
+        df = df[['datetime', 'source', 'destination']]
     return df
 
 
@@ -82,10 +82,15 @@ def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, output_file_name=
             df_adj = pd.concat([df_adj, df_compressed_adj_t])
 
         if df_adj.size > 100000:
-            df_adj.to_csv(output_file_name, mode='a', header=True, index=False)
+            if output_file_name.is_file():
+                df_adj.to_csv(output_file_name, mode='a', header=False, index=False)
+            else:
+                df_adj.to_csv(output_file_name, mode='a', header=True, index=False)
+
             df_adj = pd.DataFrame(columns=[['datetime', 'source', 'destination']])
 
         # compressed_adj_list.append(compressed_adj_t)
 
-    df_adj.to_csv(output_file_name, mode='a', header=True, index=False)
+    df_adj.to_csv(output_file_name, mode='a', header=False, index=False)
+
     return  # sparse.stack(compressed_adj_list)
