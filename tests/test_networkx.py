@@ -72,6 +72,7 @@ def test_create_undirected_graph_density():
     assert avg_delta < 0.05
     assert std_delta < 0.1
 
+
 def test_create_directed_graph_density():
     delta_list = list()
     for i in range(50):
