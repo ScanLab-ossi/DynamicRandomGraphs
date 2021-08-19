@@ -53,7 +53,6 @@ def dynamic_er_random_graph(n, steps, up_rate, down_rate, seed=None, is_directed
         G = nx.Graph()
         dynamic_graph = dn.DynGraph()
 
-
     edges = list(get_edges_iterator(n, is_directed))
     # Init graph nodes
     G.add_nodes_from(range(n))
@@ -87,7 +86,6 @@ def dynamic_er_random_graph(n, steps, up_rate, down_rate, seed=None, is_directed
                     if random() < up_rate:
                         G_t.add_edge(*e)
             list_of_graph_snapshots.append(G_t)
-
 
     for t, graph in enumerate(list_of_graph_snapshots):
         dynamic_graph.add_interactions_from(graph.edges(data=True), t=t)
