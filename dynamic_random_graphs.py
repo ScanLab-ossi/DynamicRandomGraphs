@@ -55,9 +55,9 @@ def dynamic_er_random_graph(n, steps, up_rate, down_rate, seed=None, is_directed
 
 
     edges = list(get_edges_iterator(n, is_directed))
-    
     # Init graph nodes
     G.add_nodes_from(range(n))
+    dynamic_graph.add_nodes_from(range(n))
 
     list_of_graph_snapshots = list()
 
