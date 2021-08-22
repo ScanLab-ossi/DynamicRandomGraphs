@@ -1,5 +1,5 @@
 import pytest
-import random_dynamic_graph.dynamic_random_graphs as drg
+import random_dynamic_graph.dynamic_random_graph as drg
 import dynetx as dn
 import random
 import statistics
@@ -53,9 +53,10 @@ def test_create_empty_graph_undirected():
         assert (dn.number_of_interactions(G, t=i) == 0)
 
 
+@pytest.mark.slow
 def test_create_undirected_graph_density():
     delta_list = list()
-    for i in range(50):
+    for i in range(100):
         nodes = random.randint(25, 50)
         steps = random.randint(25, 50)
         alpha = random.uniform(0.0001, 0.1)
@@ -73,9 +74,10 @@ def test_create_undirected_graph_density():
     assert std_delta < 0.1
 
 
+@pytest.mark.slow
 def test_create_directed_graph_density():
     delta_list = list()
-    for i in range(50):
+    for i in range(100):
         nodes = random.randint(25, 50)
         steps = random.randint(25, 50)
         alpha = random.uniform(0.0001, 0.1)
@@ -91,10 +93,3 @@ def test_create_directed_graph_density():
     std_delta = (statistics.stdev(delta_list))
     assert avg_delta < 0.05
     assert std_delta < 0.15
-
-# test_create_full_graph_directed()
-# test_create_full_graph_directed()
-# test_create_empty_graph_directed()
-# test_create_empty_graph_undirected()
-# test_create_undirected_graph_density()
-# test_create_directed_graph_density()

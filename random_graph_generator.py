@@ -36,6 +36,6 @@ if __name__ == "__main__":
                                 f_name = Path(
                                     'data') / f'random_undirected_er_{n}_nodes_{t}_steps_{up}_up_{down}_down_{time.time()}.csv'
                                 print(f'\n{f_name}')
-                                fdrg.fast_dynamic_er_random_graph(n, t, up, down, f_name)
+                                fdrg.fast_dynamic_er_random_graph(n, t, up, down, output_file_name=f_name)
                                 print(f"\nThis graph took: {time.time() - start_it} seconds")
         print("--- %s seconds ---" % (time.time() - start_time))

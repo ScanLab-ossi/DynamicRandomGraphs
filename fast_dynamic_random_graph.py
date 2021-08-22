@@ -1,7 +1,5 @@
 import numpy as np
-from scipy import sparse
 from tqdm import tqdm
-import sparse
 from sparse import COO
 import pandas as pd
 from pathlib import Path
@@ -18,7 +16,8 @@ def adj_matrix_to_df(adj_t, step=None):
     return df
 
 
-def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, output_file_name=None, directed=False, ):
+def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, seed=None, write_to_csv=False, is_directed=False,
+                                 output_file_name=None):
     """Returns a $G_{n,mu, lambda}$ dynamic random graph, also known as an dynamic Erdős-Rényi graph.
         The $G_{n,\mu, \lambda}$ model chooses to create inexist edges with probabilty $\mu$ (also known as up-rate)
           and remove exist edges with probability $\lambda$  (also known as doen-rate).
@@ -32,9 +31,11 @@ def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, output_file_name=
             Probability for edge creation.
         down_rate: float
             Probability of edge removal
+        write_to_csv: bool, optional (default=False)
+            False will return pandas dataframe, True will write the results to CSV (preferred for huge networks)
         output_file_name : str
-            Destination for csv file
-        directed : bool, optional (default=False)
+            Destination for csv file, relevant only if ''write_to_csv'' is True
+        is_directed : bool, optional (default=False)
             If True, this function returns a directed graph.
         See Also
         --------
@@ -50,15 +51,16 @@ def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, output_file_name=
         .. [1] Mandjes, M., Starreveld, N., Bekker, R., & Spreij, P. (2019). Dynamic Erdős-Rényi Graphs.
                     In Computing and Software Science (pp. 123-140). Springer, Cham.‏.
         """
-    if output_file_name is None:
+    if write_to_csv is True and output_file_name is None:
         output_file_name = Path(
             'data') / f'random_undirected_er_{n}_nodes_{steps}_steps_{up_rate}_up_{down_rate}_down_{time.time()}.csv'
+
+    # Init t=0 adjacency matrix
     adj_t = np.zeros((n, n))
 
     # $A_{t+1} = (A_t \cdot R_d) + (1-A_t) \cdot R_u)
     # S.t. A_t is the adj matrix, R_d is a binary random matrix with prob of down-rate of non-zero values.
     # R_u is a binary random matrix with prob of up-rate of non-zero values
-    compressed_adj_list = [COO.from_numpy(adj_t)]
     df_adj = pd.DataFrame(columns=[['datetime', 'source', 'destination']])
     for step in tqdm(range(steps)):
         down_rate_mask = np.random.choice([0, 1], size=(n, n), p=[1 - down_rate, down_rate])
@@ -69,11 +71,9 @@ def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, output_file_name=
 
         adj_t = old_edges_survived + new_edges_created
         np.fill_diagonal(adj_t, 0)  # remove self-edges
-        if directed:
-            # compressed_adj_t = COO.from_numpy(adj_t)
+        if is_directed:
             df_compressed_adj_t = adj_matrix_to_df(adj_t, step)
         else:  # make the adj matrix symmetric again
-            # compressed_adj_t = COO.from_numpy(np.tril(adj_t) + np.tril(adj_t, -1).T)
             df_compressed_adj_t = adj_matrix_to_df(np.tril(adj_t), step)
 
         if df_adj.size == 0:
@@ -88,8 +88,6 @@ def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, output_file_name=
                 df_adj.to_csv(output_file_name, mode='a', header=True, index=False)
 
             df_adj = pd.DataFrame(columns=[['datetime', 'source', 'destination']])
-
-        # compressed_adj_list.append(compressed_adj_t)
 
     df_adj.to_csv(output_file_name, mode='a', header=False, index=False)
 
