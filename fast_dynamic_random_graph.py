@@ -70,7 +70,7 @@ def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, seed=None, write_
         new_edges_created = (1 - adj_t) * up_rate_mask
 
         adj_t = old_edges_survived + new_edges_created
-        np.fill_diagonal(adj_t, 0)  # remove self-edges
+        #np.fill_diagonal(adj_t, 0)  # remove self-edges
         if is_directed:
             df_compressed_adj_t = adj_matrix_to_df(adj_t, step)
         else:  # make the adj matrix symmetric again
@@ -81,14 +81,20 @@ def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, seed=None, write_
         else:
             df_adj = pd.concat([df_adj, df_compressed_adj_t])
 
-        if df_adj.size > 100000:
-            if output_file_name.is_file():
-                df_adj.to_csv(output_file_name, mode='a', header=False, index=False)
-            else:
-                df_adj.to_csv(output_file_name, mode='a', header=True, index=False)
+        if write_to_csv:
+            if df_adj.size > 100000:
+                if output_file_name.is_file():
+                    df_adj.to_csv(output_file_name, mode='a', header=False, index=False)
+                else:
+                    df_adj.to_csv(output_file_name, mode='a', header=True, index=False)
 
-            df_adj = pd.DataFrame(columns=[['datetime', 'source', 'destination']])
+                df_adj = pd.DataFrame(columns=[['datetime', 'source', 'destination']])
 
-    df_adj.to_csv(output_file_name, mode='a', header=False, index=False)
+    if write_to_csv:
+        df_adj.to_csv(output_file_name, mode='a', header=False, index=False)
 
-    return  # sparse.stack(compressed_adj_list)
+    if not write_to_csv:
+        return df_adj
+
+    else:
+        return
