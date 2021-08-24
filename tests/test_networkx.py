@@ -1,8 +1,9 @@
-import pytest
-import random_dynamic_graph.dynamic_random_graph as drg
-import dynetx as dn
 import random
 import statistics
+
+import dynetx as dn
+import pytest
+import random_dynamic_graph.dynamic_random_graph as drg
 import random_dynamic_graph.tests.utils as utils
 
 

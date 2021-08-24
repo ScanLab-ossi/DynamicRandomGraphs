@@ -1,10 +1,11 @@
-import time
-import fast_dynamic_random_graph as fdrg
-import sparse
-from pathlib import Path
-from joblib import Parallel, delayed
-import multiprocessing
 import itertools
+import multiprocessing
+import time
+from pathlib import Path
+
+from joblib import Parallel, delayed
+
+import fast_dynamic_random_graph as fdrg
 
 if __name__ == "__main__":
 

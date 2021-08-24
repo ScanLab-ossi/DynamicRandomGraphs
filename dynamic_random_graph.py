@@ -1,7 +1,8 @@
-import dynetx as dn
-import networkx as nx
 import itertools
 from random import random
+
+import dynetx as dn
+import networkx as nx
 
 
 def get_edges_iterator(n: int, directed=False):

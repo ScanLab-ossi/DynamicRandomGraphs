@@ -1,12 +1,14 @@
-import random_dynamic_graph.fast_dynamic_random_graph as fdrg
+import random
+import statistics
+from os import path
+
 import numpy as np
 import pandas as pd
-from pandas._testing import assert_frame_equal
-import random
 import pytest
-import statistics
+import random_dynamic_graph.fast_dynamic_random_graph as fdrg
 import random_dynamic_graph.tests.utils as utils
-from os import path
+from pandas._testing import assert_frame_equal
+
 
 def test_adj_matrix_to_df_zeros_matrix():
     s = np.zeros((10, 10))

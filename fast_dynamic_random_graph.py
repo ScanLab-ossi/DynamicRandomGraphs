@@ -1,9 +1,9 @@
-import numpy as np
-from tqdm import tqdm
-from sparse import COO
-import pandas as pd
-from pathlib import Path
 import time
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+from tqdm import tqdm
 
 
 def adj_matrix_to_df(adj_t, step=None):
