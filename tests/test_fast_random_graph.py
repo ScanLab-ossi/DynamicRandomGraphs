@@ -6,7 +6,7 @@ import random
 import pytest
 import statistics
 import random_dynamic_graph.tests.utils as utils
-
+from os import path
 
 def test_adj_matrix_to_df_zeros_matrix():
     s = np.zeros((10, 10))
@@ -90,3 +90,10 @@ def test_get_binary_matrix_mask_ones_counter():
     expected_count = p * x
     std = np.sqrt(x * p * (1 - p))  # std of binomial distribution
     assert expected_count + std > counter > expected_count - std
+
+
+def test_create_graph_writing(tmpdir):
+    file = tmpdir.join('output.csv')
+    df = fdrg.fast_dynamic_er_random_graph(n=50, steps=50, up_rate=0.1, down_rate=0.5, write_to_csv=True,
+                                           is_directed=False, output_file_name=file)
+    assert path.exists(file)
