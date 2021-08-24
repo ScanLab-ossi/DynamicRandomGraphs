@@ -3,6 +3,7 @@ import random_dynamic_graph.dynamic_random_graph as drg
 import dynetx as dn
 import random
 import statistics
+import random_dynamic_graph.tests.utils as utils
 
 
 def test_get_edges_iterator_directed():
@@ -52,78 +53,59 @@ def test_create_empty_graph_undirected():
     for i in range(5):  # number of edges per t
         assert (dn.number_of_interactions(G, t=i) == 0)
 
+
+def get_delta_between_nx_random_graph_density_and_expected(is_directed=False):
+    nodes = random.randint(25, 50)
+    steps = random.randint(25, 50)
+    alpha = random.uniform(0.0001, 0.1)
+    beta = random.uniform(0.0001, 0.9999)
+    G = drg.dynamic_er_random_graph(nodes, steps, alpha, beta, None, False)
+    total_edges = sum(dn.number_of_interactions(G, t=i) for i in range(steps))
+    max_number_edges = utils.get_number_of_potential_edges(nodes, is_directed)
+    real_density = total_edges / (max_number_edges * steps)
+    expected_density = utils.get_expected_er_model_density(alpha, beta)
+    return real_density - expected_density
+
+
 def test_create_undirected_graph_density():
     delta_list = list()
     for i in range(2):
-        nodes = random.randint(25, 50)
-        steps = random.randint(25, 50)
-        alpha = random.uniform(0.0001, 0.1)
-        beta = random.uniform(0.0001, 0.9999)
-        G = drg.dynamic_er_random_graph(nodes, steps, alpha, beta, None, False)
-        total_edges = sum(dn.number_of_interactions(G, t=i) for i in range(steps))
-        max_number_edges = nodes * (nodes - 1) / 2
-        real_density = (total_edges / (max_number_edges * steps))
-        expected_density = (alpha / (alpha + beta))
-        delta = (expected_density - real_density)
+        delta = get_delta_between_nx_random_graph_density_and_expected()
         delta_list.append(delta)
     avg_delta = sum(delta_list) / len(delta_list)
     std_delta = (statistics.stdev(delta_list))
     assert avg_delta < 0.1
     assert std_delta < 0.15
+
 
 @pytest.mark.slow
 def test_create_undirected_graph_density_slow():
     delta_list = list()
     for i in range(100):
-        nodes = random.randint(25, 50)
-        steps = random.randint(25, 50)
-        alpha = random.uniform(0.0001, 0.1)
-        beta = random.uniform(0.0001, 0.9999)
-        G = drg.dynamic_er_random_graph(nodes, steps, alpha, beta, None, False)
-        total_edges = sum(dn.number_of_interactions(G, t=i) for i in range(steps))
-        max_number_edges = nodes * (nodes - 1) / 2
-        real_density = (total_edges / (max_number_edges * steps))
-        expected_density = (alpha / (alpha + beta))
-        delta = (expected_density - real_density)
+        delta = get_delta_between_nx_random_graph_density_and_expected()
         delta_list.append(delta)
     avg_delta = sum(delta_list) / len(delta_list)
     std_delta = (statistics.stdev(delta_list))
     assert avg_delta < 0.1
     assert std_delta < 0.15
 
+
 def test_create_directed_graph_density():
     delta_list = list()
     for i in range(2):
-        nodes = random.randint(25, 50)
-        steps = random.randint(25, 50)
-        alpha = random.uniform(0.0001, 0.1)
-        beta = random.uniform(0.0001, 0.9999)
-        G = drg.dynamic_er_random_graph(nodes, steps, alpha, beta, None, True)
-        total_edges = sum(dn.number_of_interactions(G, t=i) for i in range(steps))
-        max_number_edges = nodes * (nodes - 1)
-        real_density = (total_edges / (max_number_edges * steps))
-        expected_density = (alpha / (alpha + beta))
-        delta = (expected_density - real_density)
+        delta = get_delta_between_nx_random_graph_density_and_expected(is_directed=True)
         delta_list.append(delta)
     avg_delta = sum(delta_list) / len(delta_list)
     std_delta = (statistics.stdev(delta_list))
     assert avg_delta < 0.1
     assert std_delta < 0.15
+
 
 @pytest.mark.slow
 def test_create_directed_graph_density_slow():
     delta_list = list()
     for i in range(100):
-        nodes = random.randint(25, 50)
-        steps = random.randint(25, 50)
-        alpha = random.uniform(0.0001, 0.1)
-        beta = random.uniform(0.0001, 0.9999)
-        G = drg.dynamic_er_random_graph(nodes, steps, alpha, beta, None, True)
-        total_edges = sum(dn.number_of_interactions(G, t=i) for i in range(steps))
-        max_number_edges = nodes * (nodes - 1)
-        real_density = (total_edges / (max_number_edges * steps))
-        expected_density = (alpha / (alpha + beta))
-        delta = (expected_density - real_density)
+        delta = get_delta_between_nx_random_graph_density_and_expected(is_directed=True)
         delta_list.append(delta)
     avg_delta = sum(delta_list) / len(delta_list)
     std_delta = (statistics.stdev(delta_list))
