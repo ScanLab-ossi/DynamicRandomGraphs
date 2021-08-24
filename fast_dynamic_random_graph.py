@@ -16,6 +16,10 @@ def adj_matrix_to_df(adj_t, step=None):
     return df
 
 
+def get_binary_matrix_mask(n: int, rate_to_one: float):
+    return np.random.choice([0, 1], size=(n, n), p=[1 - rate_to_one, rate_to_one])
+
+
 def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, seed=None, write_to_csv=False, is_directed=False,
                                  output_file_name=None):
     """Returns a $G_{n,mu, lambda}$ dynamic random graph, also known as an dynamic Erdős-Rényi graph.
@@ -63,14 +67,14 @@ def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, seed=None, write_
     # R_u is a binary random matrix with prob of up-rate of non-zero values
     df_adj = pd.DataFrame(columns=[['datetime', 'source', 'destination']])
     for step in tqdm(range(steps)):
-        down_rate_mask = np.random.choice([0, 1], size=(n, n), p=[1 - down_rate, down_rate])
-        up_rate_mask = np.random.choice([0, 1], size=(n, n), p=[1 - up_rate, up_rate])
+        down_rate_mask = get_binary_matrix_mask(n, down_rate)
+        up_rate_mask = get_binary_matrix_mask(n, up_rate)
 
         old_edges_survived = adj_t * down_rate_mask
         new_edges_created = (1 - adj_t) * up_rate_mask
 
         adj_t = old_edges_survived + new_edges_created
-        #np.fill_diagonal(adj_t, 0)  # remove self-edges
+        # np.fill_diagonal(adj_t, 0)  # remove self-edges
         if is_directed:
             df_compressed_adj_t = adj_matrix_to_df(adj_t, step)
         else:  # make the adj matrix symmetric again

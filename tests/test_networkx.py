@@ -69,7 +69,7 @@ def get_delta_between_nx_random_graph_density_and_expected(is_directed=False):
 
 def test_create_undirected_graph_density():
     delta_list = list()
-    for i in range(2):
+    for i in range(10):
         delta = get_delta_between_nx_random_graph_density_and_expected()
         delta_list.append(delta)
     avg_delta = sum(delta_list) / len(delta_list)

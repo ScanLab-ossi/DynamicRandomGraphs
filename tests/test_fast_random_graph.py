@@ -27,8 +27,8 @@ def test_adj_matrix_to_df_not_empty_matrix():
 
 def get_delta_between_fast_random_graph_density_and_expected(write_to_csv=False, is_directed=False,
                                                              output_file_name=None):
-    nodes = random.randint(25, 50)
-    steps = random.randint(25, 50)
+    nodes = random.randint(25, 100)
+    steps = random.randint(25, 100)
     alpha = random.uniform(0.0001, 0.1)
     beta = random.uniform(0.0001, 0.9999)
     df = fdrg.fast_dynamic_er_random_graph(nodes, steps, alpha, beta, write_to_csv, is_directed, output_file_name)
@@ -39,47 +39,41 @@ def get_delta_between_fast_random_graph_density_and_expected(write_to_csv=False,
     return real_density - expected_density
 
 
-def test_create_fast_undirected_graph_density():
+def get_avg_delta_and_std(iterations: int, is_directed: bool = False):
     delta_list = list()
-    for i in range(10):
-        delta_list.append(get_delta_between_fast_random_graph_density_and_expected())
+    for i in range(iterations):
+        delta_list.append(get_delta_between_fast_random_graph_density_and_expected(is_directed))
     avg_delta = sum(delta_list) / len(delta_list)
     std_delta = (statistics.stdev(delta_list))
-    print(avg_delta, std_delta)
+    return avg_delta, std_delta
+
+
+def test_create_fast_undirected_graph_density():
+    avg_delta, std_delta = get_avg_delta_and_std(iterations=20, is_directed=False)
     assert avg_delta < 0.1
     assert std_delta < 0.15
 
 
 @pytest.mark.slow
 def test_create_fast_undirected_graph_density_slow():
-    delta_list = list()
-    for i in range(100):
-        delta_list.append(get_delta_between_fast_random_graph_density_and_expected())
-    avg_delta = sum(delta_list) / len(delta_list)
-    std_delta = (statistics.stdev(delta_list))
-    print(avg_delta, std_delta)
+    avg_delta, std_delta = get_avg_delta_and_std(iterations=200, is_directed=False)
     assert avg_delta < 0.1
     assert std_delta < 0.15
 
 
 def test_create_fast_directed_graph_density():
-    delta_list = list()
-    for i in range(10):
-        delta_list.append(get_delta_between_fast_random_graph_density_and_expected(is_directed=True))
-    avg_delta = sum(delta_list) / len(delta_list)
-    std_delta = (statistics.stdev(delta_list))
-    print(avg_delta, std_delta)
+    avg_delta, std_delta = get_avg_delta_and_std(iterations=20, is_directed=True)
     assert avg_delta < 0.1
     assert std_delta < 0.15
 
 
 @pytest.mark.slow
 def test_create_fast_directed_graph_density_slow():
-    delta_list = list()
-    for i in range(100):
-        delta_list.append(get_delta_between_fast_random_graph_density_and_expected(is_directed=True))
-    avg_delta = sum(delta_list) / len(delta_list)
-    std_delta = (statistics.stdev(delta_list))
-    print(avg_delta, std_delta)
+    avg_delta, std_delta = get_avg_delta_and_std(iterations=200, is_directed=True)
     assert avg_delta < 0.1
     assert std_delta < 0.15
+
+
+def test_get_binary_matrix_mask_size():
+    arr = fdrg.get_binary_matrix_mask(10, 0.5)
+    assert arr.shape == (10, 10)
