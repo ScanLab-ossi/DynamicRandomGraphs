@@ -49,7 +49,7 @@ def get_avg_delta_and_std(iterations: int, is_directed: bool = False):
 
 
 def test_create_fast_undirected_graph_density():
-    avg_delta, std_delta = get_avg_delta_and_std(iterations=20, is_directed=False)
+    avg_delta, std_delta = get_avg_delta_and_std(iterations=10, is_directed=False)
     assert avg_delta < 0.1
     assert std_delta < 0.15
 
@@ -62,7 +62,7 @@ def test_create_fast_undirected_graph_density_slow():
 
 
 def test_create_fast_directed_graph_density():
-    avg_delta, std_delta = get_avg_delta_and_std(iterations=20, is_directed=True)
+    avg_delta, std_delta = get_avg_delta_and_std(iterations=10, is_directed=True)
     assert avg_delta < 0.1
     assert std_delta < 0.15
 
@@ -77,3 +77,16 @@ def test_create_fast_directed_graph_density_slow():
 def test_get_binary_matrix_mask_size():
     arr = fdrg.get_binary_matrix_mask(10, 0.5)
     assert arr.shape == (10, 10)
+    arr = fdrg.get_binary_matrix_mask(100, 0.3)
+    assert arr.shape == (100, 100)
+
+
+def test_get_binary_matrix_mask_ones_counter():
+    nodes = 100
+    x = nodes ** 2
+    p = 0.3
+    arr = fdrg.get_binary_matrix_mask(nodes, p)
+    counter = np.sum(arr)
+    expected_count = p * x
+    std = np.sqrt(x * p * (1 - p))  # std of binomial distribution
+    assert expected_count + std > counter > expected_count - std

@@ -62,7 +62,7 @@ def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, seed=None, write_
     # Init t=0 adjacency matrix
     adj_t = np.zeros((n, n))
 
-    # $A_{t+1} = (A_t \cdot R_d) + (1-A_t) \cdot R_u)
+    # $A_{t+1} = (A_t \cdot (1-R_d)) + (1-A_t) \cdot R_u)$
     # S.t. A_t is the adj matrix, R_d is a binary random matrix with prob of down-rate of non-zero values.
     # R_u is a binary random matrix with prob of up-rate of non-zero values
     df_adj = pd.DataFrame(columns=[['datetime', 'source', 'destination']])
@@ -70,7 +70,7 @@ def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, seed=None, write_
         down_rate_mask = get_binary_matrix_mask(n, down_rate)
         up_rate_mask = get_binary_matrix_mask(n, up_rate)
 
-        old_edges_survived = adj_t * down_rate_mask
+        old_edges_survived = adj_t * (1 - down_rate_mask)
         new_edges_created = (1 - adj_t) * up_rate_mask
 
         adj_t = old_edges_survived + new_edges_created
