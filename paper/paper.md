@@ -8,12 +8,11 @@ title: 'RandomDynamicGraph: A Python package for generation of dynamic graphs ra
 
 authors:
 
-- name: Yanir Marmor affiliation: "1"
-- name: Alex Z. Abbey affiliation: "1"
-- name: Ossi Mokryn affiliation: "2"
+- name: Yanir Marmor affiliation: 1
+- name: Alex Z. Abbey affiliation: 1
+- name: Ossi Mokryn affiliation: 1
   affiliations:
-- name: Tel Aviv University index: 1
-- name:University of Haifa index: 2
+- name:University of Haifa index: 1
 
 date: 27 June 2021 bibliography: paper.bib link-citations: yes
 
