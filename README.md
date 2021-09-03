@@ -13,31 +13,6 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-<!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
-  </ol>
-</details>
 
 # RandomDynamicGraph - Random dynamic networks generator
 
@@ -64,7 +39,7 @@ Make sure you have `Python3` installed on your computer, as well as `pip` and `s
 date. If you want to be safe, take a look at
 the [guide to installing Python packages](https://packaging.python.org/tutorials/installing-packages/).
 
-Clone the codebase from this github repository with the small green icon on the up-right corner `Code` or from the
+Clone the codebase from this GitHub repository with the small green icon on the up-right corner `Code` or from the
 terminal:
 
 ```shell
@@ -126,7 +101,7 @@ conf_example.json``.
 python random_graph_generator.py --config="conf_example.json"
 ```
 
-The json exmpale looks like:
+The json example looks like:
 
 ```json
 {
@@ -185,7 +160,7 @@ degrees distribution and communities parameters as well.
   networks, with a focus on (but not limited to) human face-to-face contact networks.
 * [Teneto](https://teneto.readthedocs.io/en/latest/index.html) - a Python package includes various tools for analyzing
   temporal network data. Temporal network measures, temporal network generation, derivation of time-varying/dynamic
-  connectivities, plotting functions.
+  connectivity, plotting functions.
 * [netrd](https://netrd.readthedocs.io/en/latest/) - This library provides a consistent, NetworkX-based interface to
   various utilities for graph distances, graph reconstruction from time series data, and simulated dynamics on networks.
 * [Random Modular Network Generator](https://github.com/prathasah/random-modular-network-generator) Generates random
@@ -193,7 +168,7 @@ degrees distribution and communities parameters as well.
 * [randomGraph](https://github.com/sdghafouri/randomGraph) very simple random graph generator in matlab
 * [Graph1](https://github.com/Saptaparni/Graph1) Random Graph Generator with Max capacity paths (C++)
 * [grapherator](https://github.com/jakobbossek/grapherator) - The R package grapherator implements a modular approach to
-  benachmark graph generation focusing on undirected, weighted graphs.
+  benchmark graph generation focusing on undirected, weighted graphs.
 * [igraph: Network Analysis and Visualization](https://cran.r-project.org/package=igraph) This R package Includes some
   methods to generate classical Erdos-Renyi random graphs as well as more recent models, e.g., small-world graphs.
 * [netgen: Network Generator for Combinatorial Graph Problems](https://cran.r-project.org/package=netgen) This R package
@@ -211,3 +186,21 @@ degrees distribution and communities parameters as well.
 
 Running into any bugs? Check out the [open issues](https://github.com/ScanLab-ossi/random_dynamic_graph/issues) to see
 if we're already working on it. If not, open up a new issue, and we will check it out when we can. Thank you.
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
+[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
+[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/othneildrew
+[product-screenshot]: images/screenshot.png
