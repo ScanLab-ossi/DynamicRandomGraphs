@@ -117,7 +117,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 # Roadmap
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and
+See the [open issues](https://github.com/ScanLab-ossi/random_dynamic_graph/issues) for a list of proposed features (and
 known issues).
 
 In general, we would like to extend the model for better control on the parameters on the time-line and on the
