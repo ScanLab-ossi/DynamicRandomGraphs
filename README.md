@@ -8,10 +8,6 @@
 RandomDynamicGraph provides implementations of dynamic networks in Python. It deals with the efficient generation of
 random dynamic (also known as *temporal*) networks.
 
-### Built With
-
-..
-
 <!-- GETTING STARTED -->
 
 # Getting started
