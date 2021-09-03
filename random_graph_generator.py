@@ -2,41 +2,53 @@ import itertools
 import multiprocessing
 import time
 from pathlib import Path
-
+import json
 from joblib import Parallel, delayed
 
 import fast_dynamic_random_graph as fdrg
+import dynamic_random_graph as drg
+
+import argparse
+
+parser = argparse.ArgumentParser(description='Random Network generation')
+
+parser.add_argument('--name', default='random_network', type=str,
+                    help='Name of the network.')
+parser.add_argument('--out_file', default='random_network',
+                    help='path to output network file')
+parser.add_argument('--nodes', default=100, type=int,
+                    help='Number of nodes')
+parser.add_argument('--steps', default=1000, type=int,
+                    help='Number of time steps')
+parser.add_argument('--is_directed', default=False, type=bool,
+                    help='is directed graph (default=False)')
+parser.add_argument('--up', default=0.01, type=float,
+                    help='up-rate parameter; the probability of an edge to appear at the first time (default=0.01)')
+parser.add_argument('--down', default=0.5, type=float,
+                    help='down-rate parameter;'
+                         ' the probability of an exist edge to disappear at the next time (default=0.5)')
+parser.add_argument('--mode', default='pandas', type=str,
+                    help='Mode of the network - pandas-based or networkX (default=pandas)')
+parser.add_argument('--config', default=None, type=str,
+                    help='path of config json file for several networks parameters')
 
 if __name__ == "__main__":
+    args = parser.parse_args()
 
-    mp = False
-
-    if mp:
-        start_time = time.time()
-
-        num_cores = multiprocessing.cpu_count()
-        n = 1000
-        nodes = [1000]
-        t = [10000]
-        up = [4 / n, 3 / n, 2 / n, 1 / n, 0.5 / n, 0.333 / n, 0.25 / n]
-        down = [0.1, 0.3, 0.5, 0.7, 0.9]
-        inputs = itertools.product(nodes, t, up, down)
-        results = Parallel(n_jobs=num_cores)(delayed(fdrg.fast_dynamic_er_random_graph)(*i) for i in inputs)
-        print("--- %s seconds ---" % (time.time() - start_time))
-
+    if args.config:
+        # in case of configuration file, we apply multi-processing generation of any combination of given parameters.
+        # works only for fast graph generator (pandas-mode)
+        with open(args.config) as json_file:
+            args = json.load(json_file)
+            num_cores = multiprocessing.cpu_count()
+            parameters_combinations = itertools.product(args.nodes, args.steps, args.up, args.down, args.is_directed)
+            results = Parallel(n_jobs=num_cores)(
+                delayed(fdrg.fast_dynamic_er_random_graph)(*i) for i in parameters_combinations)
     else:
-
-        start_time = time.time()
-        for i in range(1, 2):
-            for n in [int(1000 / i)]:
-                for _ in range(8):
-                    for t in [10000]:
-                        for up in [1 / n]:
-                            for down in [0.5]:
-                                start_it = time.time()
-                                f_name = Path(
-                                    'data') / f'random_undirected_er_{n}_nodes_{t}_steps_{up}_up_{down}_down_{time.time()}.csv'
-                                print(f'\n{f_name}')
-                                fdrg.fast_dynamic_er_random_graph(n, t, up, down, output_file_name=f_name)
-                                print(f"\nThis graph took: {time.time() - start_it} seconds")
-        print("--- %s seconds ---" % (time.time() - start_time))
+        if args.mode is 'pandas':
+            fdrg.fast_dynamic_er_random_graph(n=args.nodes, steps=args.steps, up_rate=args.up, down_rate=args.down,
+                                              write_to_csv=True, is_directed=args.directed,
+                                              output_file_name=f'{args.out_file}.csv')
+        else:  # NetworkX mode
+            drg.dynamic_er_random_graph(n=args.nodes, steps=args.steps, up_rate=args.up, down_rate=args.down,
+                                        is_directed=args.directed, write_to_file=True, output_file_name=args.out_file)

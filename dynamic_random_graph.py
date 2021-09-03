@@ -13,12 +13,15 @@ def get_edges_iterator(n: int, directed=False):
     return edges
 
 
-def dynamic_er_random_graph(n, steps, up_rate, down_rate, seed=None, is_directed=False):
+def dynamic_er_random_graph(n, steps, up_rate, down_rate, seed=None, is_directed=False, write_to_file=False,
+                            output_file_name="random_network"):
     """Returns a $G_{n,mu, lambda}$ dynamic random graph, also known as an dynamic Erdős-Rényi graph.
     The $G_{n,\mu, \lambda}$ model chooses to create inexist edges with probabilty $\mu$ (also known as up-rate)
       and remove exist edges with probability $\lambda$  (also known as down-rate).
     Parameters
     ----------
+    output_file_name
+    write_to_file
     n : int
         The number of nodes.
     steps: int
@@ -90,5 +93,9 @@ def dynamic_er_random_graph(n, steps, up_rate, down_rate, seed=None, is_directed
 
     for t, graph in enumerate(list_of_graph_snapshots):
         dynamic_graph.add_interactions_from(graph.edges(data=True), t=t)
+
+    if write_to_file:
+        dn.readwrite.edgelist.write_interactions(dynamic_graph, f'{output_file_name}.edge_list')
+        dn.readwrite.edgelist.write_snapshots(dynamic_graph, f'{output_file_name}.snapshot')
 
     return dynamic_graph
