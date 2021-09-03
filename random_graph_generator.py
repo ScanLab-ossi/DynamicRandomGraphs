@@ -52,4 +52,4 @@ if __name__ == "__main__":
                                               output_file_name=f'{args.out_file}.csv')
         else:  # NetworkX mode
             drg.dynamic_er_random_graph(n=args.nodes, steps=args.steps, up_rate=args.up, down_rate=args.down,
-                                        is_directed=args.directed, write_to_file=True, output_file_name=args.out_file)
+                                        is_directed=args.is_directed, write_to_file=True, output_file_name=args.out_file)
