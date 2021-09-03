@@ -153,12 +153,19 @@ The json exmpale looks like:
 }
 ```
 
-And the generator make a graph from every combination of parameters in the lists. From the example above, the generator
+The generator makes a graph from every combination of parameters in the lists. From the example above, the generator
 creates 24 different networks.
 
 # License
+Distributed under the MIT License. See `LICENSE` for more information.
 
 # Roadmap
+
+See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and
+known issues).
+
+In general, we would like to extend the model for better control on the parameters on the time-line and on the
+degrees distribution and communities parameters as well.
 
 ## Related works
 
@@ -201,5 +208,6 @@ creates 24 different networks.
   . Eur. Phys. J. B 90, 200 (2017). [doi](https://doi.org/10.1140/epjb/e2017-80122-8)
 
 ## How to report issues?
-Running into any bugs? Check out the [open issues] (https://github.com/ScanLab-ossi/random_dynamic_graph/issues) to see if
-we're already working on it. If not, open up a new issue, and we will check it out when we can. Thank you.
+
+Running into any bugs? Check out the [open issues](https://github.com/ScanLab-ossi/random_dynamic_graph/issues) to see
+if we're already working on it. If not, open up a new issue, and we will check it out when we can. Thank you.
