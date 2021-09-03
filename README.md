@@ -61,19 +61,100 @@ If you want to use the library to generate random networks, you should follow th
 ## Prerequisites
 
 Make sure you have `Python3` installed on your computer, as well as `pip` and `setuptools`, and that they are up to
-date. If you want to be safe, take a look at the [guide to installing Python packages](https://packaging.python.org/tutorials/installing-packages/). 
+date. If you want to be safe, take a look at
+the [guide to installing Python packages](https://packaging.python.org/tutorials/installing-packages/).
 
-Clone the codebase from this github repository with the small green icon on the up-right corner `Code` or from the terminal: 
+Clone the codebase from this github repository with the small green icon on the up-right corner `Code` or from the
+terminal:
+
 ```shell
 git clone ScanLab-ossi/random_dynamic_graph
 ```
 
 Then, install the required packages:
+
 ```sh
  pip install -r requirements.txt
  ```
 
+## Usage
 
+The graph generator can operate in two different modes. Working modes include creating a single network and quickly
+generating a variety of networks.
+
+### Single network mode
+
+```shell
+python random_graph_generator.py --node=100 --steps=200 --mode="pandas"
+```
+
+This command will crate network with 100 nodes along 200 time steps. That information will be saved as CSV file.
+
+Similar example will create NetworkX object, and the relevant command is:
+
+```shell
+python random_graph_generator.py --node=100 --steps=200 --mode="NetworkX"
+```
+
+Other parameters are accessible for that mode:
+
+```
+Parameters
+        ----------
+        n : int
+            The number of nodes.
+        steps: int
+            The number of timestamps in the temporal network. The length of the network in the time axis.
+        up_rate : float
+            Probability for edge creation.
+        down_rate: float
+            Probability of edge removal
+        write_to_csv: bool, optional (default=False)
+            False will return pandas dataframe, True will write the results to CSV (preferred for huge networks)
+        output_file_name : str
+            Destination for csv file, relevant only if ''write_to_csv'' is True
+        is_directed : bool, optional (default=False)
+            If True, this function returns a directed graph.
+```
+
+### Multi network mode
+
+Many networks can be created in parallel in this mode of operation. To do so, use the JSON file as the `
+conf_example.json``.
+
+```shell
+python random_graph_generator.py --config="conf_example.json"
+```
+
+The json exmpale looks like:
+
+```json
+{
+  "nodes": [
+    100,
+    200,
+    500
+  ],
+  "steps": [
+    1000,
+    2000
+  ],
+  "up": [
+    0.001,
+    0.005
+  ],
+  "down": [
+    0.2,
+    0.4
+  ],
+  "is_directed": [
+    false
+  ]
+}
+```
+
+And the generator make a graph from every combination of parameters in the lists. From the example above, the generator
+creates 24 different networks.
 
 # License
 
@@ -119,3 +200,6 @@ Then, install the required packages:
   M.E.J. [Random graph models for dynamic networks](https://link.springer.com/article/10.1140%2Fepjb%2Fe2017-80122-8#citeas)
   . Eur. Phys. J. B 90, 200 (2017). [doi](https://doi.org/10.1140/epjb/e2017-80122-8)
 
+## How to report issues?
+Running into any bugs? Check out the [open issues] (https://github.com/ScanLab-ossi/random_dynamic_graph/issues) to see if
+we're already working on it. If not, open up a new issue, and we will check it out when we can. Thank you.
