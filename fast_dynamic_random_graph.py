@@ -20,7 +20,7 @@ def get_binary_matrix_mask(n: int, rate_to_one: float):
     return np.random.choice([0, 1], size=(n, n), p=[1 - rate_to_one, rate_to_one])
 
 
-def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, seed=None, write_to_csv=False, is_directed=False,
+def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, seed=None, write_to_csv=True, is_directed=False,
                                  output_file_name=None):
     """Returns a $G_{n,mu, lambda}$ dynamic random graph, also known as an dynamic Erdős-Rényi graph.
         The $G_{n,\mu, \lambda}$ model chooses to create inexist edges with probabilty $\mu$ (also known as up-rate)
@@ -58,6 +58,7 @@ def fast_dynamic_er_random_graph(n, steps, up_rate, down_rate, seed=None, write_
     if write_to_csv is True and output_file_name is None:
         output_file_name = Path(
             'data') / f'random_undirected_er_{n}_nodes_{steps}_steps_{up_rate}_up_{down_rate}_down_{time.time()}.csv'
+        Path('data').mkdir(parents=True, exist_ok=True)
 
     # Init t=0 adjacency matrix
     adj_t = np.zeros((n, n))

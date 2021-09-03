@@ -41,11 +41,12 @@ if __name__ == "__main__":
         with open(args.config) as json_file:
             args = json.load(json_file)
             num_cores = multiprocessing.cpu_count()
-            parameters_combinations = itertools.product(args.nodes, args.steps, args.up, args.down, args.is_directed)
+            parameters_combinations = itertools.product(args["nodes"], args["steps"], args["up"], args["down"],
+                                                        args["is_directed"])
             results = Parallel(n_jobs=num_cores)(
                 delayed(fdrg.fast_dynamic_er_random_graph)(*i) for i in parameters_combinations)
     else:
-        if args.mode is 'pandas':
+        if args.mode == 'pandas':
             fdrg.fast_dynamic_er_random_graph(n=args.nodes, steps=args.steps, up_rate=args.up, down_rate=args.down,
                                               write_to_csv=True, is_directed=args.directed,
                                               output_file_name=f'{args.out_file}.csv')
