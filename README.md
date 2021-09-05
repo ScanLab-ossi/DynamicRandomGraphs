@@ -7,8 +7,7 @@
 DynamicRandomGraph provides implementations of dynamic networks in Python. It deals with the efficient generation of
 random dynamic (also known as *temporal*) networks.
 
-The package was first demonstrated in a lecture entitled "
-[Reducing temporal density reduces total infection rate](https://www.youtube.com/watch?v=gUyP7etPPvE)" given at the 
+The package was first demonstrated in a talk entitled "[Reducing temporal density reduces total infection rate](https://www.youtube.com/watch?v=gUyP7etPPvE)" given at the 
 "Networks2021" conference.
 
 <!-- GETTING STARTED -->
