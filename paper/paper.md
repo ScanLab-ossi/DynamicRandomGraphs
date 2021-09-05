@@ -55,7 +55,7 @@ networks' structure, dynamics, and functions but is unsuitable for large tempora
 context of random graph generation, there are some libraries in non-Python languages: `DANCer` (Scala), `randomGraph` (
 Matlab), `Graph1`(C++), `grapherator`(R), `igraph`(R) etc.
 
-`RandomDynamicGraph` is a Python package associated with dynamic networks that generate random temporal networks. Python
+In contrast to the other mentioned packages,`RandomDynamicGraph`, suggested here, is a Python package associated with dynamic networks that generate random temporal networks. Python
 allows the wrapping of low-level languages for speed without sacrificing flexibility or user-friendliness in the user
 interface. The `RandomDynamicGraph` API was created to provide a class-based and user-friendly interface for generating
 large-scale random dynamic networks efficiently. Conversion of `RandomDynamicGraph` objects to `NetworkX` objects is
