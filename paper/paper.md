@@ -28,11 +28,10 @@ Models for studying networks are primarily static. Lately, the work in `[@Zhang:
 to the dynamic case of several static network models, where one assumes that continuous-time Markov processes govern the
 appearance and disappearance of edges. Thus, the fundamental unit of analysis is the entire history of the network.
 Edges appear and disappear by making transitions from present to absent or vice versa at certain rates. For example, in
-temporal random networks, the rate depends on the required probability of having an edge between any two nodes (vertices).
-
-Such temporal modeling is also significant for the research and understanding of virality and epidemics: airborne
-diseases spread over networks of contacts between individuals that change in time, and ideas dynamically spread over
-social networks.
+temporal random networks, the rate depends on the required probability of having an edge between any two nodes
+(vertices). Such temporal modeling is also significant for the research and understanding of virality and epidemics:
+airborne diseases spread over networks of contacts between individuals that change in time, and ideas dynamically spread
+over social networks.
 
 `RandomDynamicGraph` is a Python package that implements the algorithm from `[@Zhang:2017]`  for generating large-scale
 dynamic random graphs. The package focuses on massive data generation; it uses efficient math calculations, writes to
