@@ -24,8 +24,8 @@ Large-scale real-world interaction systems, such as social, technological, and b
 structures that change with time. There is an increased interest in studying the dynamics and temporal evolution of
 these systems. One of the ways is by modeling these systems using dynamic temporal networks.
 
-Models for studying networks are primarily static. Lately, the work in `[@Zhang:2017]` offered natural generalizations
-to the dynamic case of several static network models, where one assumes that continuous-time Markov processes govern the
+Models for studying networks are primarily static. Lately, the work in `[@Zhang:2017]` offered natural generalization
+of the Erdős–Rényi static network model, where one assumes that continuous-time Markov processes govern the
 appearance and disappearance of edges. Thus, the fundamental unit of analysis is the entire history of the network.
 Edges appear and disappear by making transitions from present to absent or vice versa at certain rates. For example, in
 temporal random networks, the rate depends on the required probability of having an edge between any two nodes
