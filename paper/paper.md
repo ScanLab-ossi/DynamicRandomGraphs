@@ -1,5 +1,5 @@
 ---  
-title: 'DynamicRandomGraph: A Python package for generation of dynamic graphs randomly'
+title: 'DynamicRandomGraphs: A Python package for generation of dynamic graphs randomly'
 
 tags:
 
@@ -31,7 +31,7 @@ Network research has advanced at a rapid pace in recent years, as have the insig
 research that employs tools from network science in the study of social networks, biological networks, neurological  
 networks, communication networks, energy, and other topics.
 
-`DynamicRandomGraph` is a Python package that implements a basic method for generating large-scale random  
+`DynamicRandomGraphs` is a Python package that implements a basic method for generating large-scale random  
 dynamic graphs. The package's focus is on massive and efficient data generation; it uses efficient math calculations,
 writes the data to disk  
 instead of in-memory when datasets are too large, and supports multi-processing.
@@ -55,11 +55,11 @@ networks' structure, dynamics, and functions but is unsuitable for large tempora
 context of random graph generation, there are some libraries in non-Python languages: `DANCer` (Scala), `randomGraph` (
 Matlab), `Graph1`(C++), `grapherator`(R), `igraph`(R) etc.
 
-In contrast to the other mentioned packages,`DynamicRandomGraph`, suggested here, is a Python package associated with dynamic networks that generate random temporal networks. Python
+In contrast to the other mentioned packages,`DynamicRandomGraphs`, suggested here, is a Python package associated with dynamic networks that generate random temporal networks. Python
 allows the wrapping of low-level languages for speed without sacrificing flexibility or user-friendliness in the user
-interface. The `DynamicRandomGraph` API was created to provide a class-based and user-friendly interface for generating
-large-scale random dynamic networks efficiently. Conversion of `DynamicRandomGraph` objects to `NetworkX` objects is
-supported but inefficient.  `DynamicRandomGraph` was created for use by network scientists and other researchers who use
+interface. The `DynamicRandomGraphs` API was created to provide a class-based and user-friendly interface for generating
+large-scale random dynamic networks efficiently. Conversion of `DynamicRandomGraphs` objects to `NetworkX` objects is
+supported but inefficient.  `DynamicRandomGraphs` was created for use by network scientists and other researchers who use
 temporal networks to represent their data, as well as students in courses on dynamic networks, complex networks, and
 networks science. It's already been used in few scientific research projects (*citation talk in NetSci*).
 
