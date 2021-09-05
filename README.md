@@ -1,11 +1,11 @@
 
-# RandomDynamicGraph - Random dynamic networks generator
+# DynamicRandomGraph - Random dynamic networks generator
 
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
 
-RandomDynamicGraph provides implementations of dynamic networks in Python. It deals with the efficient generation of
+DynamicRandomGraph provides implementations of dynamic networks in Python. It deals with the efficient generation of
 random dynamic (also known as *temporal*) networks.
 
 <!-- GETTING STARTED -->
