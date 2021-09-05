@@ -46,7 +46,7 @@ according to a predefined set of parameters.
 python random_graph_generator.py --node=100 --steps=200 --mode="pandas"
 ```
 
-This command will crate network with 100 nodes along 200 time steps. That information will be saved as CSV file.
+This command will create network with 100 nodes along 200 time steps. That information will be saved as CSV file.
 
 Similar example will create NetworkX object, and the relevant command is:
 
