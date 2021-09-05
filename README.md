@@ -40,7 +40,7 @@ Our package operates in two modes. A stand-alone mode allows for the generation 
 temporal network of choice; The parallel mode creates a set of temporal networks, each consisting of multiple graphs,
 according to a predefined set of parameters.
 
-### Single network mode
+### Stand-alone mode
 
 ```shell
 python random_graph_generator.py --node=100 --steps=200 --mode="pandas"
@@ -75,7 +75,7 @@ Parameters
             If True, this function returns a directed graph.
 ```
 
-### Multi network mode
+### Parallel mode
 
 Many networks can be created in parallel in this mode of operation. To do so, use the JSON file as the `
 conf_example.json``.
