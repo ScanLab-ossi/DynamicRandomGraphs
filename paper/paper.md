@@ -1,5 +1,5 @@
 ---  
-title: 'DynamicRandomGraphs: A Python package for generation of temporal random graphs'
+title: 'DynamicRandomGraphs: A Python package for generation of scalable temporal random graphs'
 
 tags:
 
