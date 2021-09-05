@@ -1,4 +1,4 @@
-# DynamicRandomGraphs - Random dynamic networks generator
+# DynamicRandomGraphs: A Python package for generation of scalable temporal random graphs
 
 <!-- ABOUT THE PROJECT -->
 
