@@ -1,5 +1,5 @@
 ---  
-title: 'DynamicRandomGraphs: A Python package for generation of dynamic graphs randomly'
+title: 'DynamicRandomGraphs: A Python package for generation of temporal random graphs'
 
 tags:
 
@@ -20,24 +20,29 @@ date: 27 June 2021 bibliography: paper.bib link-citations: yes
 
 # Summary
 
-A temporal network, also known as a dynamic network, is a network representation that changes over time. It is extremely
-valuable for examining how a connected system, such as a social or biological system, grows, changes, or evolves through
-time. This temporal representation can demonstrate how a viral infection spreads with a human population or how  
-information circulates in a social network.
+Large-scale real-world interaction systems, such as social, technological, and biological networks, are dynamic
+structures that change with time. There is an increased interest in studying the dynamics and temporal evolution of
+these systems. One of the ways is by modeling these systems using dynamic temporal networks.
 
-Network research has advanced at a rapid pace in recent years, as have the insights that have emerged from it, as has  
-research that employs tools from network science in the study of social networks, biological networks, neurological  
-networks, communication networks, energy, and other topics.
+Models for studying networks are primarily static. Lately, the work in `[@Zhang:2017]` offered natural generalizations to the
+dynamic case of several static network models, where one assumes that continuous-time Markov processes govern the
+appearance and disappearance of edges. Thus, the fundamental unit of analysis is the entire history of the network.
+Edges appear and disappear by making transitions from present to absent or vice versa at certain rates. For example, in
+temporal random networks, the rate depends on the required probability of having an edge between any two nodes (
+vertices).
 
-`DynamicRandomGraphs` is a Python package that implements a basic method for generating large-scale random  
-dynamic graphs. The package's focus is on massive and efficient data generation; it uses efficient math calculations,
-writes the data to disk instead of in-memory when datasets are too large, and supports multi-processing.
+Such temporal modeling is also significant for the research and understanding of virality and epidemics: airborne
+diseases spread over networks of contacts between individuals that change in time, and ideas dynamically spread over
+social networks.
 
-`DynamicRandomGraphs`
-was created for use by network scientists and other researchers who use temporal networks to represent their data, as
-well as students in courses on dynamic networks, complex networks, and networks science. The package was first used to
-simulate the spread of Covid-19 under different social distancing conditions as presented in Networks 2021:
-[Reducing temporal density reduces total infection rate](https://www.youtube.com/watch?v=gUyP7etPPvE).
+`RandomDynamicGraph` is a Python package that implements the algorithm from `[@Zhang:2017]`  for generating large-scale dynamic
+random graphs. The package focuses on massive data generation; it uses efficient math calculations, writes to file
+instead of in-memory when datasets are too large, and it supports multi-processing.
+
+`DynamicRandomGraphs` was created for use by network scientists and other researchers who use temporal networks to
+represent their data, as well as students in courses on dynamic networks, complex networks, and networks science. The
+package was first used to simulate the spread of Covid-19 under different social distancing conditions as presented in
+Networks 2021: [Reducing temporal density reduces total infection rate](https://www.youtube.com/watch?v=gUyP7etPPvE).
 
 # Statement of need
 
@@ -59,10 +64,11 @@ context of random graph generation, there are some libraries in non-Python langu
 Matlab), `Graph1`(C++), `grapherator`(R), `igraph`(R) etc.
 
 In contrast to the other mentioned packages,`DynamicRandomGraphs`, suggested here, is a Python package associated with
-dynamic networks that generate random temporal networks`[@Zhang:2017]`. Python allows the wrapping of low-level languages for speed
-without sacrificing flexibility or user-friendliness in the user interface. The `DynamicRandomGraphs` API was created to
-provide a class-based and user-friendly interface for generating large-scale random dynamic networks efficiently.
-Conversion of `DynamicRandomGraphs` objects to `NetworkX` objects is supported but inefficient.
+dynamic networks that generate random temporal networks`[@Zhang:2017]`. Python allows the wrapping of low-level
+languages for speed without sacrificing flexibility or user-friendliness in the user interface.
+The `DynamicRandomGraphs` API was created to provide a class-based and user-friendly interface for generating
+large-scale random dynamic networks efficiently. Conversion of `DynamicRandomGraphs` objects to `NetworkX` objects is
+supported but inefficient.
 
 # Support
 
