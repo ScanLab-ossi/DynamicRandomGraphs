@@ -157,11 +157,6 @@ degrees distribution and communities parameters as well.
 * [bnlearn: Bayesian Network Structure Learning, Parameter Learning and Inference](https://cran.r-project.org/web/packages/bnlearn/index.html)
   The R function `bnlearn::random.graph` implements some algorithms to create graphs.
 
-## Papers
-
-* Zhang, X., Moore, C. & Newman,
-  M.E.J. [Random graph models for dynamic networks](https://link.springer.com/article/10.1140%2Fepjb%2Fe2017-80122-8#citeas)
-  . Eur. Phys. J. B 90, 200 (2017). [doi](https://doi.org/10.1140/epjb/e2017-80122-8)
 
 ## How to report issues?
 

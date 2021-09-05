@@ -12,7 +12,7 @@ authors:
 
 - name: Yanir Marmor affiliation: 1
 - name: Alex Z. Abbey affiliation: 1
-- name: Ossi Mokryn affiliation: 1  
+- name: Osnat Mokryn affiliation: 1  
   affiliations:
 - name: University of Haifa index: 1
 
@@ -38,43 +38,30 @@ instead of in-memory when datasets are too large, and supports multi-processing.
 
 # Statement of need
 
-In the context of networks science, it appears that gathering relevant data is one of the most difficult challenges
-facing researchers in the field. Despite the fact that we live in the digital era, issues of data collection cost, user
-privacy, up-to-date and relevant information are a barrier for researchers who are forced to use partial, old, and not  
-always relevant data.
+Lack of real-life temporal network data due to data collection cost, user privacy, and up-to-date and relevant
+information issues creates a need for temporal network models. Current temporal network models tend to be either static
+or of small size.
 
-Furthermore, despite the fact that one of the distinguishing characteristics of complex systems is their size,
-researchers in the field are obliged to rely on small-scale data. And, despite the fact that networks are probabilistic,
-research in the field use only individual networks, making it difficult to discern the probabilistic aspect.
+This library permits in-depth theoretical and empirical analysis of large-scale temporal networks; it does so without
+requiring a large investment in data collecting and without jeopardizing human privacy.
 
-In the mentioned circumstance, the utility of this library appears to be twofold: on the one hand, it permits in-depth
-theoretical and empirical analysis of temporal networks; on the other hand, it does so without requiring a large
-investment in data collecting and without jeopardizing human privacy.
+# Other packages
 
-# Related projects
+A popular software package is `NetworkX`. NetworkX is a great package for creating, manipulating, and studying complex
+networks' structure, dynamics, and functions but is unsuitable for large temporal networks.
+`DyNetx` is an extension of `NetworkX` for dynamic graphs. Unfortunately, Because of the dependence on NetworkX,
+`DyNetx`'s performance is deficient in large-scale temporal networks.
+`netrd` is another Python library based on the `NetworkX` interface and provides utilities for dynamic graphs. In the
+context of random graph generation, there are some libraries in non-Python languages: `DANCer` (Scala), `randomGraph` (
+Matlab), `Graph1`(C++), `grapherator`(R), `igraph`(R) etc.
 
-Other software in the field that aids researchers are `NetworkX`  that is a great package for the creation,
-manipulation, and study of the structure, dynamics, and functions of complex networks, but not suitable for large
-networks or temporal networks. `DyNetx` is an extension of `NetworkX` for dynamic graphs. Unfortunately, Because of the
-dependence on `NetworkX`, the `DyNetx`'s performance is very low in large-scale temporal networks. `netrd` is another
-Python library that based on `NetworkX` interface and provide utilities for dynamic  
-graphs. In the context of random graph generation there are some libraries in non-Python languages: `DANCer` (Scala),  
-`randomGraph` (Matlab),`Graph1`(C++), `grapherator` (R), `igraph` (R) etc.
-
-`RandomDynamicGraph` is a Python package associated with dynamic networks that generates random temporal networks.
-Python allows for the wrapping of low-level languages for speed without sacrificing flexibility or user-friendliness in
-the user interface. The `RandomDynamicGraph` API was created to provide a class-based and user-friendly interface for
-efficient generation of large-scale random dynamic networks.
-
-Conversion of `RandomDynamicGraph` objects to `NetworkX` objects is supported, but `NetworkX` has no use during data
-generation  
-due to `NetworkX`'s waste time running and volume of data.
-
-`RandomDynamicGraph` was created for use by network scientists and other researchers who use temporal networks to
-represent  
-their data, as well as students in courses on dynamic networks, complex networks, and networks science.
-
-It's already been used in few scientific research projects (*citation talk in NetSci*).
+`RandomDynamicGraph` is a Python package associated with dynamic networks that generate random temporal networks. Python
+allows the wrapping of low-level languages for speed without sacrificing flexibility or user-friendliness in the user
+interface. The `RandomDynamicGraph` API was created to provide a class-based and user-friendly interface for generating
+large-scale random dynamic networks efficiently. Conversion of `RandomDynamicGraph` objects to `NetworkX` objects is
+supported but inefficient.  `RandomDynamicGraph` was created for use by network scientists and other researchers who use
+temporal networks to represent their data, as well as students in courses on dynamic networks, complex networks, and
+networks science. It's already been used in few scientific research projects (*citation talk in NetSci*).
 
 # Support
 
