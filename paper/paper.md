@@ -20,10 +20,8 @@ date: 27 June 2021 bibliography: paper.bib link-citations: yes
 
 # Summary
 
-A temporal network, also known as a dynamic network, is a network representation that changes over time. It is
-extremely  
-valuable for examining how a connected system, such as a social or biological system, grows, changes, or evolves
-through  
+A temporal network, also known as a dynamic network, is a network representation that changes over time. It is extremely
+valuable for examining how a connected system, such as a social or biological system, grows, changes, or evolves through
 time. This temporal representation can demonstrate how a viral infection spreads with a human population or how  
 information circulates in a social network.
 
@@ -61,7 +59,7 @@ context of random graph generation, there are some libraries in non-Python langu
 Matlab), `Graph1`(C++), `grapherator`(R), `igraph`(R) etc.
 
 In contrast to the other mentioned packages,`DynamicRandomGraphs`, suggested here, is a Python package associated with
-dynamic networks that generate random temporal networks. Python allows the wrapping of low-level languages for speed
+dynamic networks that generate random temporal networks`[@Zhang:2017]`. Python allows the wrapping of low-level languages for speed
 without sacrificing flexibility or user-friendliness in the user interface. The `DynamicRandomGraphs` API was created to
 provide a class-based and user-friendly interface for generating large-scale random dynamic networks efficiently.
 Conversion of `DynamicRandomGraphs` objects to `NetworkX` objects is supported but inefficient.
