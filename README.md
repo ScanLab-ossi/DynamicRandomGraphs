@@ -5,7 +5,7 @@
 ## About The Project
 
 DynamicRandomGraphs provides implementations of dynamic networks in Python. It deals with the efficient generation of
-scalable dynamic random (also known as *temporal*) networks.
+scalable dynamic (temporal) random networks.
 
 The package was first used to simulate the spread of Covid-19 under different social distancing conditions as presented
 in Networks 2021:
