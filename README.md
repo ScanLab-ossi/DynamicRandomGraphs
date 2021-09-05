@@ -15,8 +15,6 @@ in Networks 2021:
 
 # Getting started
 
-If you want to use the library to generate random networks, you should follow these steps.
-
 ## Prerequisites
 
 Make sure you have `Python3` installed on your computer, as well as `pip` and `setuptools`, and that they are up to
