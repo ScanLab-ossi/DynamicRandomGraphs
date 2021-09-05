@@ -36,8 +36,9 @@ Then, install the required packages:
 
 ## Usage
 
-The graph generator can operate in two different modes. Working modes include creating a single network and quickly
-generating a variety of networks.
+Our package operates in two modes. A stand-alone mode allows for the generation of a series of graphs representing the
+temporal network of choice; The parallel mode creates a set of temporal networks, each consisting of multiple graphs,
+according to a predefined set of parameters.
 
 ### Single network mode
 
