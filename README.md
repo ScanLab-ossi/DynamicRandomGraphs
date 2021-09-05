@@ -1,4 +1,3 @@
-
 # DynamicRandomGraph - Random dynamic networks generator
 
 <!-- ABOUT THE PROJECT -->
@@ -7,6 +6,10 @@
 
 DynamicRandomGraph provides implementations of dynamic networks in Python. It deals with the efficient generation of
 random dynamic (also known as *temporal*) networks.
+
+The package was first demonstrated in a lecture entitled "
+R[educing temporal density reduces total infection rate](https://www.youtube.com/watch?v=gUyP7etPPvE)" given at the 
+"Networks2021" conference.
 
 <!-- GETTING STARTED -->
 
@@ -113,6 +116,7 @@ The generator makes a graph from every combination of parameters in the lists. F
 creates 24 different networks.
 
 # License
+
 Distributed under the MIT License. See `LICENSE` for more information.
 
 # Roadmap
@@ -120,8 +124,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 See the [open issues](https://github.com/ScanLab-ossi/random_dynamic_graph/issues) for a list of proposed features (and
 known issues).
 
-In general, we would like to extend the model for better control on the parameters on the time-line and on the
-degrees distribution and communities parameters as well.
+In general, we would like to extend the model for better control on the parameters on the time-line and on the degrees
+distribution and communities parameters as well.
 
 ## Related works
 
@@ -156,7 +160,6 @@ degrees distribution and communities parameters as well.
   Contains some methods to generate complete graphs especially for benchmarking Travelling-Salesperson-Problem solvers.
 * [bnlearn: Bayesian Network Structure Learning, Parameter Learning and Inference](https://cran.r-project.org/web/packages/bnlearn/index.html)
   The R function `bnlearn::random.graph` implements some algorithms to create graphs.
-
 
 ## How to report issues?
 
