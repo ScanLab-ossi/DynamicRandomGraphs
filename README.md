@@ -43,7 +43,7 @@ according to a predefined set of parameters.
 ### Stand-alone mode
 
 ```shell
-python random_graph_generator.py --node=100 --steps=200 --mode="pandas"
+python -m random_graph_generator --node=100 --steps=200 --mode="pandas"
 ```
 
 This command will create network with 100 nodes along 200 time steps. That information will be saved as CSV file.
@@ -51,7 +51,7 @@ This command will create network with 100 nodes along 200 time steps. That infor
 Similar example will create NetworkX object, and the relevant command is:
 
 ```shell
-python random_graph_generator.py --node=100 --steps=200 --mode="NetworkX"
+python -m random_graph_generator --node=100 --steps=200 --mode="NetworkX"
 ```
 
 Other parameters are accessible for that mode:
@@ -81,7 +81,7 @@ Many networks can be created in parallel in this mode of operation. To do so, us
 conf_example.json``.
 
 ```shell
-python random_graph_generator.py --config="conf_example.json"
+python -m random_graph_generator --config="conf_example.json"
 ```
 
 The json example looks like:
@@ -125,6 +125,12 @@ known issues).
 
 In general, we would like to extend the model for better control on the parameters on the time-line and on the degrees
 distribution and communities parameters as well.
+
+## Contributing
+
+Feel free to fork and help out.
+
+Test using `pytest`. Run slower tests with `pytest --runslow`.
 
 ## Related works
 
