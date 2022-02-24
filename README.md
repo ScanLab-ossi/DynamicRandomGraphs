@@ -10,6 +10,7 @@ scalable dynamic (temporal) random networks.
 The package was first used to simulate the spread of Covid-19 under different social distancing conditions as presented
 in Networks 2021 and in Arxiv paper titled: An interaction-based contagion model over temporal networks demonstrates that reducing temporal network density reduces total infection rate. 
 When using the package please cite the Arxiv paper: 
+Abbey, A., Marmor, Y., Shahar, Y., Mokryn, O. (2022). An interaction-based contagion model over temporal networks demonstrates that reducing temporal network density reduces total infection rate. ArXiv 2202.11591, 1–21. https://arxiv.org/abs/2202.11591
 
 The talk at Networks2021: [Reducing temporal density reduces total infection rate](https://www.youtube.com/watch?v=gUyP7etPPvE)
 
@@ -119,6 +120,8 @@ creates 24 different networks.
 # License
 
 Distributed under the MIT License. See `LICENSE` for more information.
+Cite: 
+Abbey, A., Marmor, Y., Shahar, Y.,Mokryn, O. (2022). An interaction-based contagion model over temporal networks demonstrates that reducing temporal network density reduces total infection rate. ArXiv 2202.11591, 1–21. https://arxiv.org/abs/2202.11591
 
 # Roadmap
 
