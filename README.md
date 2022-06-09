@@ -120,6 +120,7 @@ creates 24 different networks.
 # License
 
 Distributed under the MIT License. See `LICENSE` for more information.
+
 Cite: 
 Abbey, A., Marmor, Y., Shahar, Y.,Mokryn, O. (2022). An interaction-based contagion model over temporal networks demonstrates that reducing temporal network density reduces total infection rate. ArXiv 2202.11591, 1–21. https://arxiv.org/abs/2202.11591
 
