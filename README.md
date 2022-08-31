@@ -1,6 +1,6 @@
-[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 
 # DynamicRandomGraphs: A Python package for generation of scalable temporal random graphs
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 
 <!-- ABOUT THE PROJECT -->
 
